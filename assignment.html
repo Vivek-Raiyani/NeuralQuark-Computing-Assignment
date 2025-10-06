@@ -538,9 +538,22 @@
     document.getElementById('activityList').innerHTML = activityHTML;
   }
 
- 
+
   function getUserLocation() {
+    const savedLocation = JSON.parse(localStorage.getItem('userLocation'));
+    
+    if (savedLocation && savedLocation.lat && savedLocation.lon) {
+      console.log("user location from local storage")
+      userLocation = savedLocation;
+      document.getElementById('location').textContent = 
+        `${savedLocation.lat.toFixed(2)}°, ${savedLocation.lon.toFixed(2)}°`;
+      getTides(savedLocation.lat, savedLocation.lon);
+      return;
+    }
+    
+    
     if (navigator.geolocation) {
+      console.log("user location from location api")
       navigator.geolocation.getCurrentPosition(
         (pos) => {
           const lat = pos.coords.latitude;
@@ -548,6 +561,8 @@
           userLocation = { lat, lon };
           document.getElementById('location').textContent = 
             `${lat.toFixed(2)}°, ${lon.toFixed(2)}°`;
+          console.log("saving user location to local storage")
+          localStorage.setItem('userLocation', JSON.stringify(userLocation));
           getTides(lat, lon);
         },
         (err) => {
@@ -562,7 +577,6 @@
         '<div class="glass-card rounded-4 p-4 text-center">⚠️ Geolocation is not supported by your browser.</div>';
     }
   }
-
   getUserLocation();
 </script>
 </body>

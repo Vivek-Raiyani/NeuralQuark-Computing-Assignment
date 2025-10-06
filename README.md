@@ -7,7 +7,7 @@ The web application must be able to fetch the user's current location to determi
    git clone https://github.com/Vivek-Raiyani/assignment-NeuralQuark-Computing.git
    cd assignment-NeuralQuark-Computing
    ```
-** Sample API Keys **
+**Sample API Keys**
 ```
 storm_glass = 7049a32a-a130-11f0-9727-0242ac130006-7049a3d4-a130-11f0-9727-0242ac130006 
 storm_glass = 68536d30-a267-11f0-b808-0242ac130006-68536d8a-a267-11f0-b808-0242ac130006
